@@ -1,4 +1,4 @@
-# 🎯 Sadede
+# Sadede
 
 > **Az söyle, öz söyle.**
 
