@@ -1,4 +1,4 @@
-# Sadede
+# 🎯 Sadede
 
 > **Az söyle, öz söyle.**
 
@@ -20,21 +20,45 @@ Türkçenin kendine has dolguları var: "gerçekleştirmek / sağlamak" fiil zin
 
 ## Kurulum
 
-### Tek komutla (Claude Code, Cursor, Codex ve diğerleri)
+### Hızlı kurulum (Claude Code)
+
+```bash
+npx skills add tlh-k/sadede -g -a claude-code -y
+```
+
+Hiçbir şey sormadan kurar ve tüm projelerde geçerli olur. Başka agent'lar için `-a` sonrasını değiştir veya birden fazla ekle (`-a claude-code -a codex`).
+
+### Adım adım kurulum
+
+Seçimleri kendin yapmak istersen bayraksız çalıştır:
 
 ```bash
 npx skills add tlh-k/sadede
 ```
 
-### Claude Code (manuel)
+**1. Repo indirilir, skill bulunur.** `Found 1 skill` ve `Skill: sadede` satırlarını görürsün. Ardından araç hangi agent'lara kurulacağını sorar.
+
+![Kurulumun başlangıcı ve agent seçimi sorusu](docs/kurulum-1.png)
+
+**2. Agent'ları seç.** `Which agents do you want to install to?` ekranında Amp, Codex, Cursor, Gemini CLI, GitHub Copilot gibi ortak `.agents/skills` klasörünü okuyan agent'lar varsayılan olarak seçili gelir. Claude Code kendi klasörünü kullandığı için seçili gelmez: ok tuşlarıyla Claude Code'a in, **Space** ile işaretle, **Enter** ile onayla.
+
+**3. Kapsam: `Global`.** `Installation scope` sorusunda Global'i seç. Project seçersen skill sadece komutu çalıştırdığın klasörde çalışır.
+
+**4. Yöntem: `Symlink (Recommended)`.** Tek kopya `~/.agents/skills/sadede` altında tutulur, Claude Code ona bağlanır. Güncellemeler tüm agent'lara birden yansır.
+
+**5. Özeti kontrol et, onayla.** Özette `universal` satırında ortak agent'lar, altında `symlink → Claude Code` görünmeli. `Proceed with installation?` sorusuna **Yes** de.
+
+![Kapsam, yöntem, kurulum özeti ve tamamlanma ekranı](docs/kurulum-2.png)
+
+**6. Kullan.** Yeni bir Claude Code oturumu aç ve `/sadede` yaz.
+
+### Manuel kurulum (Claude Code, npx olmadan)
 
 ```bash
 git clone https://github.com/tlh-k/sadede.git
 mkdir -p ~/.claude/skills
 cp -r sadede/skills/sadede ~/.claude/skills/
 ```
-
-Sadece bir projede kullanmak için `~/.claude/skills/` yerine projenin `.claude/skills/` klasörüne kopyala.
 
 ### Diğer asistanlar (ChatGPT, Gemini vb.)
 
