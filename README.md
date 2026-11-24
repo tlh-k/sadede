@@ -52,13 +52,44 @@ npx skills add tlh-k/sadede
 
 **6. Kullan.** Yeni bir Claude Code oturumu aç ve `/sadede` yaz.
 
-### Manuel kurulum (Claude Code, npx olmadan)
+### Manuel kurulum (Claude Code, npx olmadan, macOS / Linux)
 
 ```bash
 git clone https://github.com/tlh-k/sadede.git
 mkdir -p ~/.claude/skills
 cp -r sadede/skills/sadede ~/.claude/skills/
 ```
+
+### Windows
+
+Aşağıdaki komutları olduğu gibi kopyalayıp yapıştır; hiçbir şey sormadan kurar.
+
+#### Hızlı kurulum (Node.js varsa, PowerShell veya CMD)
+
+```powershell
+npx.cmd skills add tlh-k/sadede -g -a claude-code -y --copy
+```
+
+- `npx` değil **`npx.cmd`**: PowerShell'de `npx` yazınca çıkan *"running scripts is disabled on this system"* hatasına takılmaz. CMD'de de aynen çalışır.
+- `--copy`: Windows'ta symlink için yönetici yetkisi veya Geliştirici Modu gerekir. Bu bayrakla dosyalar doğrudan kopyalanır, yetki sorunu çıkmaz.
+
+#### Manuel kurulum (Node.js ve git gerekmez)
+
+**PowerShell** (Başlat → "PowerShell" yaz → aç):
+
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = 'Tls12'; $t = "$env:TEMP\sadede"; Remove-Item $t -Recurse -Force -ErrorAction SilentlyContinue; Invoke-WebRequest https://github.com/tlh-k/sadede/archive/refs/heads/main.zip -OutFile "$t.zip" -UseBasicParsing; Expand-Archive "$t.zip" $t -Force; New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null; Remove-Item "$HOME\.claude\skills\sadede" -Recurse -Force -ErrorAction SilentlyContinue; Copy-Item "$t\sadede-main\skills\sadede" "$HOME\.claude\skills\" -Recurse -Force; Write-Host "Kuruldu: $HOME\.claude\skills\sadede"
+```
+
+**CMD** (Başlat → "cmd" yaz → aç):
+
+```bat
+curl -L -o "%TEMP%\sadede.zip" https://github.com/tlh-k/sadede/archive/refs/heads/main.zip && tar -xf "%TEMP%\sadede.zip" -C "%TEMP%" && xcopy /E /I /Y "%TEMP%\sadede-main\skills\sadede" "%USERPROFILE%\.claude\skills\sadede" && echo Kuruldu: %USERPROFILE%\.claude\skills\sadede
+```
+
+Her iki komut da tekrar çalıştırılabilir; güncellemek için aynı komutu yeniden çalıştırman yeterli.
+
+**Kontrol:** `C:\Users\<kullanıcı-adın>\.claude\skills\sadede\SKILL.md` dosyası var olmalı. Sonra yeni bir Claude Code oturumu aç ve `/sadede` yaz.
 
 ### Diğer asistanlar (ChatGPT, Gemini vb.)
 
